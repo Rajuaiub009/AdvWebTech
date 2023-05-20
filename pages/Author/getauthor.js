@@ -1,23 +1,29 @@
 import Link from "next/link"
 import axios from "axios";
-import MyLayout from "../Layout/layout";
+import SessionCheck from "../Layout/sessioncheck";
+import MyHeader from '../Layout/header';
 
 export default function GetAuthor({ data }) {
     
   return (
       <>
-      <center>
-        <MyLayout/>
-      <h1>All Authors</h1>
-      <ul>
+      <MyHeader title = "All Authors"/>
+      <SessionCheck/>
+      <div className="bg-blue-500 py-4">
+        <div className="container mx-auto px-6">
+          <h1 className="text-3xl text-center font-semibold text-white">All Authors</h1>
+        </div>
+        </div>
+        
+        <div className="container mx-auto  px-4 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
         {data.map(item => (
-          <li key={item.id}>
-      
+          <div key={item.id} className="p-8 text-white font-bold bg-slate-700 rouded gray text-center rounded hover:bg-black" >
         <Link href={"/Author/author/"+item.id}>{item.name}</Link>
-            </li>
+           </div>
         ))}
-      </ul>
-      </center>
+        </div>
+           
     </>
   );
   }

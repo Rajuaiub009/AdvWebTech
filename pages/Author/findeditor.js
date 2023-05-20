@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import UserLayout from '../Layout/userdata';
-import MyLayout from '../Layout/layout';
+import SessionCheck from '../Layout/sessioncheck';
+import MyHeader from '../Layout/header';
+
 
 export default function MyPage({ data }) {
 
@@ -30,11 +32,14 @@ pathname: 'findeditor',
 
 return (
  <>
+ <MyHeader title="Search Editor"/>
+ <SessionCheck/>
  <center>
-<MyLayout />
  <form onSubmit={handleFormSubmit}>
-<input type="text" value={inputValue} onChange={handleInputChange} />
- <button type="submit">Search</button>
+ <div className="max-w-100 bg-slate-700 py-20 ">
+<input type="text" placeholder='Search Editors By Id' class="w-80 px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value={inputValue} onChange={handleInputChange} /> &nbsp;
+ <button type="submit"  className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search</button>
+ </div>
  </form>
 
 {data.status == null?
@@ -74,7 +79,7 @@ data
 
 props: {
 
- data: {status:"enter valid user id"}
+ data: {status:""}
 
 }
  };
